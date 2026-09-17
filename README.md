@@ -6,7 +6,7 @@
 
 Arch-based Linux with KDE Plasma 6. Privacy defaults, Calamares installer, Limine on the installed system.
 
-Live ISO boots [`linux-enigmarsos-lts`](https://github.com/RishiSpace/linux-enigmarsos/tree/lts) (BORE, x86-64-v2). Calamares installs rolling [`linux-enigmarsos`](https://github.com/RishiSpace/linux-enigmarsos) (v3) from packages on the ISO; LTS stays as the Limine fallback. Userspace extras ([`enigmars-extras`](https://github.com/RishiSpace/enigmars-extras), including Utils) use the same GitHub Releases pacman mirror.
+Live ISO boots [`linux-enigmarsos-lts`](https://github.com/enigmars-project/linux-enigmarsos/tree/lts) (BORE, x86-64-v2). Calamares installs rolling [`linux-enigmarsos`](https://github.com/enigmars-project/linux-enigmarsos) (v3) from packages on the ISO; LTS stays as the Limine fallback. Userspace extras ([`enigmars-extras`](https://github.com/enigmars-project/enigmars-extras), including Utils) use the same GitHub Releases pacman mirror.
 
 ## Layout
 
@@ -58,7 +58,7 @@ export ENIGMARSOS_GPG_KEY=YOUR_KEY_ID
 | `enigmarsos-filesystem` | os-release, issue, motd |
 | `enigmarsos-settings` | Plasma / security defaults |
 | `enigmarsos-artwork` | logos, wallpapers, colors |
-| `enigmars-utils` | landing hub ([enigmars-extras](https://github.com/RishiSpace/enigmars-extras) pacman repo) |
+| `enigmars-utils` | landing hub ([enigmars-extras](https://github.com/enigmars-project/enigmars-extras) pacman repo) |
 | `enigmarsos-calamares-config` | installer branding |
 | `enigmarsos-firefox-config` | Firefox policies + uBlock |
 | `enigmarsos-hooks` | pacman hooks (ESP kernel sync, …) |
@@ -85,4 +85,4 @@ GPL-3.0-or-later for EnigmarsOS packaging and tooling. Upstream keeps its own li
 ## Links
 
 - Site / docs: https://enigmarsos.rishispace.dev
-- Issues: https://github.com/RishiSpace/EnigmarsOS/issues
+- Issues: https://github.com/enigmars-project/EnigmarsOS/issues

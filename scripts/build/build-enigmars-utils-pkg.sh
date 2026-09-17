@@ -3,7 +3,7 @@
 # Runs inside the Arch ISO build container (makepkg + repo-add).
 set -euo pipefail
 
-REPO="${ENIGMARS_UTILS_GIT:-https://github.com/RishiSpace/enigmars-utils.git}"
+REPO="${ENIGMARS_UTILS_GIT:-https://github.com/enigmars-project/enigmars-utils.git}"
 DEST="${ENIGMARSOS_LOCAL_REPO:-/opt/enigmarsos-repo}"
 SRC="${ENIGMARS_UTILS_SRC:-/home/builder/enigmars-utils}"
 BUILD_USER="${ENIGMARS_UTILS_BUILD_USER:-builder}"

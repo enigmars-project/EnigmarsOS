@@ -2,7 +2,7 @@
 # Build into a custom [enigmarsos] repo or install post-setup.
 #
 # enigmars-utils is not listed here: the ISO clones GitHub
-# (RishiSpace/enigmars-utils) and pacstraps it from [enigmarsos-local].
+# (enigmars-project/enigmars-utils) and pacstraps it from [enigmarsos-local].
 #
 # Dropped from [extra] ~2026-08 (use in-tree brcmfmac or AUR/dkms):
 # broadcom-wl

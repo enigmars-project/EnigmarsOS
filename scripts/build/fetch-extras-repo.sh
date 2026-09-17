@@ -5,7 +5,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 DEST="${ENIGMARSOS_EXTRAS_REPO:-${ROOT}/repo-extras/x86_64}"
-API="${ENIGMARS_EXTRAS_RELEASE_API:-https://api.github.com/repos/RishiSpace/enigmars-extras/releases/latest}"
+API="${ENIGMARS_EXTRAS_RELEASE_API:-https://api.github.com/repos/enigmars-project/enigmars-extras/releases/latest}"
 
 mkdir -p "${DEST}"
 

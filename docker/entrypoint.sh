@@ -78,7 +78,7 @@ if [[ -d /build/repo-extras/x86_64 ]] && [[ -f /build/repo-extras/x86_64/enigmar
 [enigmars-extras]
 SigLevel = Optional TrustAll
 Server = file:///build/repo-extras/x86_64
-Server = https://github.com/RishiSpace/enigmars-extras/releases/latest/download
+Server = https://github.com/enigmars-project/enigmars-extras/releases/latest/download
 EOF
   fi
 fi

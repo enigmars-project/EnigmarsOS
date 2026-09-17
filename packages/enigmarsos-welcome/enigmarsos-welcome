@@ -58,8 +58,8 @@ MUTED = "#8A8A8A"
 LINKS = {
     "Documentation": "https://enigmarsos.rishispace.dev/docs",
     "Website": "https://enigmarsos.rishispace.dev",
-    "GitHub": "https://github.com/RishiSpace/EnigmarsOS",
-    "Issues": "https://github.com/RishiSpace/EnigmarsOS/issues",
+    "GitHub": "https://github.com/enigmars-project/EnigmarsOS",
+    "Issues": "https://github.com/enigmars-project/EnigmarsOS/issues",
     "Discord": "https://discord.gg/enigmarsos",
     "Changelog": "https://enigmarsos.rishispace.dev/changelog",
     "Release Notes": "https://enigmarsos.rishispace.dev/releases",

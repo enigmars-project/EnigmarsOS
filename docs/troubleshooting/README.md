@@ -47,7 +47,7 @@ sudo arch-chroot /mnt
 pacman -Syu linux
 /usr/share/enigmarsos/scripts/sync-esp-boot.sh
 # If the script is missing (older ISO), copy it from a new ISO or from:
-#   https://github.com/RishiSpace/EnigmarsOS (scripts/install/sync-esp-boot.sh)
+#   https://github.com/enigmars-project/EnigmarsOS (scripts/install/sync-esp-boot.sh)
 
 exit
 sudo umount -R /mnt

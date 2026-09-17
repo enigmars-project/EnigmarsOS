@@ -16,7 +16,7 @@ strings:
     bootloaderEntryName: EnigmarsOS
     productUrl:          https://enigmarsos.rishispace.dev
     supportUrl:          https://enigmarsos.rishispace.dev/docs
-    knownIssuesUrl:      https://github.com/RishiSpace/EnigmarsOS/issues
+    knownIssuesUrl:      https://github.com/enigmars-project/EnigmarsOS/issues
     releaseNotesUrl:     https://enigmarsos.rishispace.dev/changelog
     donateUrl:           https://enigmarsos.rishispace.dev/donate
 

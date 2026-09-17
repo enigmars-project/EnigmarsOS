@@ -8,7 +8,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 DEST="${ENIGMARSOS_KERNEL_REPO:-${ROOT}/repo/x86_64}"
-API="${LINUX_ENIGMARSOS_RELEASE_API:-https://api.github.com/repos/RishiSpace/linux-enigmarsos/releases/latest}"
+API="${LINUX_ENIGMARSOS_RELEASE_API:-https://api.github.com/repos/enigmars-project/linux-enigmarsos/releases/latest}"
 
 mkdir -p "${DEST}"
 

@@ -6,7 +6,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 DEST="${ENIGMARSOS_LTS_REPO:-${ROOT}/repo-lts/x86_64}"
-API_BASE="${LINUX_ENIGMARSOS_API:-https://api.github.com/repos/RishiSpace/linux-enigmarsos}"
+API_BASE="${LINUX_ENIGMARSOS_API:-https://api.github.com/repos/enigmars-project/linux-enigmarsos}"
 
 mkdir -p "${DEST}"
 
@@ -126,7 +126,7 @@ fi
 TAG_FILE="${DEST}/.release-tag"
 if [[ -s "${TAG_FILE}" ]]; then
   LTS_TAG="$(tr -d '[:space:]' < "${TAG_FILE}")"
-  LTS_URL="https://github.com/RishiSpace/linux-enigmarsos/releases/download/${LTS_TAG}"
+  LTS_URL="https://github.com/enigmars-project/linux-enigmarsos/releases/download/${LTS_TAG}"
   echo "==> Pinning LTS pacman Server to ${LTS_URL}"
   sed -i "s|releases/download/lts|releases/download/${LTS_TAG}|g" \
     "${ROOT}/archiso/airootfs/etc/pacman.d/linux-enigmarsos-lts.conf" \

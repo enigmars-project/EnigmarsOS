@@ -3,7 +3,7 @@ FROM archlinux:latest
 
 LABEL org.opencontainers.image.title="EnigmarsOS ISO Builder" \
       org.opencontainers.image.description="Privileged Arch environment for mkarchiso" \
-      org.opencontainers.image.source="https://github.com/RishiSpace/EnigmarsOS"
+      org.opencontainers.image.source="https://github.com/enigmars-project/EnigmarsOS"
 
 RUN printf '\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n' >> /etc/pacman.conf
 

@@ -73,7 +73,7 @@ Installed systems use **[Limine](https://github.com/Limine-Bootloader/Limine)**:
   (works offline). LTS stays as the Limine fallback. There is no stock
   Arch `linux` kernel.
   **`enigmars-utils`** and other extras come from the
-  [`enigmars-extras`](https://github.com/RishiSpace/enigmars-extras) mirror
+  [`enigmars-extras`](https://github.com/enigmars-project/enigmars-extras) mirror
   (`pacman -Syyu` after install).
 - Kernels are **staged onto the ESP** (`EFI/EnigmarsOS/vmlinuz-*`) because Limine
   cannot read btrfs. A pacman hook runs `sync-esp-boot.sh` after every
