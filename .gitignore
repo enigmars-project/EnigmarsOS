@@ -38,6 +38,7 @@ packages/**/*.log
 *.key
 !**/keyring*/
 private/
+.env
 
 # Docker build cache (vendored tarball is kept)
 # docker/cache/*.tar.gz  # keep vendored calamares source
