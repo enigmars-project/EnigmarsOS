@@ -36,6 +36,37 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Fleet-weather canary: GHA rotates silicon under ubuntu-latest and past
+      # runs died in NVIDIA DKMS with "CPU ISA level is lower than required"
+      # when served a host without usable x86-64-v3. Informational only (the
+      # ISO build itself must never need v3 execution); FAIL here explains a
+      # later DKMS failure. Container needs no separate check: it shares the
+      # host kernel's CPUID.
+      - name: x86-64-v3 execution canary
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          echo "CPU: $(grep -m1 'model name' /proc/cpuinfo | cut -d: -f2 | xargs)"
+          grep -qo osxsave /proc/cpuinfo \
+            && echo "V3_CANARY: osxsave present" \
+            || echo "V3_CANARY: osxsave MISSING (Hyper-V guest)"
+          cat > /tmp/v3canary.c <<'EOF'
+          #include <immintrin.h>
+          #include <stdio.h>
+          int main(void) {
+            __m256i a = _mm256_set1_epi32(1), b = _mm256_set1_epi32(2);
+            __m256i c = _mm256_add_epi32(a, b); /* real AVX2 (v3) execution */
+            unsigned x[8];
+            _mm256_storeu_si256((__m256i *)x, c);
+            if (x[0] != 3) { puts("V3_CANARY: WRONG RESULT"); return 1; }
+            puts("V3_CANARY: PASS (v3 compiles and executes)");
+            return 0;
+          }
+          EOF
+          gcc -march=x86-64-v3 -o /tmp/v3canary /tmp/v3canary.c \
+            && echo "V3_CANARY: v3 compile OK"
+          /tmp/v3canary || echo "V3_CANARY: FAIL (v3 does not execute on this runner)"
+
       - name: Free disk space
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc \
