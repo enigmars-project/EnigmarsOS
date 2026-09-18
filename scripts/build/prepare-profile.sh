@@ -94,10 +94,11 @@ bash "${ROOT}/scripts/build/fetch-lts-repo.sh"
 # Snapshot enigmars-extras (Utils, …) into file:///build/repo-extras/x86_64
 bash "${ROOT}/scripts/build/fetch-extras-repo.sh"
 
-# A literal `releases/download/lts` URL 404s (no `lts` tag exists) and would
-# strand installed systems on a dead repo. Fail the build, not the user.
-if grep -q 'releases/download/lts' "${AIO}/etc/pacman.d/linux-enigmarsos-lts.conf"; then
-  echo "error: LTS pacman Server left unpinned (no lts release discovered)" >&2
+# The LTS pacman Server must always use the moving `lts` tag so installed
+# systems track new LTS kernels via `pacman -Syyu`. Fail the build, not
+# the user, if a version pin slipped in.
+if ! grep -q 'releases/download/lts' "${AIO}/etc/pacman.d/linux-enigmarsos-lts.conf"; then
+  echo "error: LTS pacman Server does not track the moving lts tag" >&2
   exit 1
 fi
 
