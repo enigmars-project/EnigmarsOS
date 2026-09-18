@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 # Populate repo-lts/x86_64 with linux-enigmarsos-lts packages + db.
-# Prefers a moving tag named `lts`; otherwise the newest GitHub Release
-# that has linux-enigmarsos-lts-*.pkg.tar.zst (e.g. linux-enigmarsos-lts-6.18.51).
+# Downloads prefer a moving tag named `lts`; otherwise the newest GitHub
+# Release that has linux-enigmarsos-lts-*.pkg.tar.zst. Pacman Server URLs
+# always use the moving `lts` tag (never a version pin) so installed
+# systems track new LTS kernels via `pacman -Syyu`.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
@@ -125,13 +127,15 @@ fi
 
 TAG_FILE="${DEST}/.release-tag"
 if [[ -s "${TAG_FILE}" ]]; then
-  LTS_TAG="$(tr -d '[:space:]' < "${TAG_FILE}")"
-  LTS_URL="https://github.com/enigmars-project/linux-enigmarsos/releases/download/${LTS_TAG}"
-  echo "==> Pinning LTS pacman Server to ${LTS_URL}"
-  sed -i "s|releases/download/lts|releases/download/${LTS_TAG}|g" \
-    "${ROOT}/archiso/airootfs/etc/pacman.d/linux-enigmarsos-lts.conf" \
-    "${ROOT}/archiso/pacman.conf"
+  echo "    fetched release: $(tr -d '[:space:]' < "${TAG_FILE}")"
 fi
+# Pacman always tracks the moving `lts` tag (never a version pin) so
+# `pacman -Syyu` follows new LTS kernels. Normalize in case an older run
+# pinned a versioned tag into these working-tree confs.
+sed -i "s|releases/download/linux-enigmarsos-lts-[^[:space:]\"']*|releases/download/lts|g" \
+  "${ROOT}/archiso/airootfs/etc/pacman.d/linux-enigmarsos-lts.conf" \
+  "${ROOT}/archiso/pacman.conf"
+echo "==> LTS pacman Server tracks https://github.com/enigmars-project/linux-enigmarsos/releases/download/lts"
 
 echo "==> LTS repo ready:"
 ls -lh "${DEST}"
