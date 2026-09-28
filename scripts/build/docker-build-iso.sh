@@ -89,10 +89,23 @@ if [[ ! -f "${ROOT}/repo-extras/x86_64/enigmars-extras.db" && ! -f "${ROOT}/repo
         ls -lh'
 fi
 
+# Bound container memory so a future compressor regression fails loudly and
+# early instead of surfacing as a cryptic `xz error 9` halfway through the
+# squashfs. Overridable: ENIGMARSOS_BUILD_MEM=8g ./scripts/build/docker-build-iso.sh
+BUILD_MEM="${ENIGMARSOS_BUILD_MEM:-6g}"
+HOST_MEM_KB="$(awk '/^MemTotal:/ {print $2}' /proc/meminfo 2>/dev/null || echo 0)"
+if (( HOST_MEM_KB > 0 && HOST_MEM_KB < 6 * 1024 * 1024 )); then
+  echo "WARNING: host has $(( HOST_MEM_KB / 1024 / 1024 )) GiB RAM; build container capped at ${BUILD_MEM}." >&2
+  echo "         If the squashfs step fails with a memory error, raise ENIGMARSOS_BUILD_MEM" >&2
+  echo "         or use a larger runner." >&2
+fi
+
 DOCKER_ARGS=(
   --rm
   --privileged
   --security-opt apparmor=unconfined
+  --memory="${BUILD_MEM}"
+  --memory-swap="${BUILD_MEM}"
   -e SOURCE_DATE_EPOCH="${SOURCE_DATE_EPOCH:-$(date +%s)}"
   -e ENIGMARSOS_ROOT=/build
   -v "${ROOT}:/build"
